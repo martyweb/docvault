@@ -13,6 +13,32 @@ Pages:
 - **Database:** a read-only table browser showing schema, indexes and rows. Secrets are masked.
 - **Settings:** the Anthropic API key and API URL (stored in the database, overriding `.env`), plus the versions of all components.
 
+## Screenshots
+
+**Documents:** upload, indexing status, and chat over the whole library or selected files.
+
+![Documents page with the library and chat](docs/screenshots/documents.png)
+
+**Search:** keyword and semantic matches, grouped by document.
+
+![Search results for "remote work"](docs/screenshots/search.png)
+
+**Viewer:** documents render in the app with search terms highlighted. Shown here: Markdown and a Word document.
+
+![Markdown document with highlighted search terms](docs/screenshots/viewer-markdown.png)
+
+![Word document rendered as HTML](docs/screenshots/viewer-docx.png)
+
+**Database:** read-only table browser.
+
+![Database page showing the chunks table](docs/screenshots/database.png)
+
+**Settings:** API key and URL, plus component versions.
+
+![Settings page](docs/screenshots/settings.png)
+
+<sub>Screenshots use fictional sample documents.</sub>
+
 > **No built-in authentication.** Run DocVault on a private network, or put it behind an auth or IP-allowlist middleware (see `TRAEFIK_MIDDLEWARES` below). Anyone who can reach it can read, upload and delete documents, and change the API key.
 
 ## Run locally

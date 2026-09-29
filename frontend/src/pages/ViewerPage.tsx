@@ -7,7 +7,7 @@ import { Highlight, queryTerms } from "../components/Highlight";
 // Uploaded HTML (and DOCX converted to HTML) renders in a sandbox: no scripts, no same-origin access.
 const HTML_FRAME_STYLE =
   "<style>body{font-family:system-ui,sans-serif;line-height:1.55;max-width:860px;margin:24px auto;padding:0 20px;color:#1c2230}" +
-  "img{max-width:100%}table{border-collapse:collapse}td,th{border:1px solid #ccd;padding:4px 8px}</style>";
+  "img{max-width:100%}table{border-collapse:collapse}td,th{border:1px solid #ccd;padding:4px 8px}td p,th p{margin:0}</style>";
 
 interface Props {
   id: string;
@@ -98,7 +98,7 @@ export default function ViewerPage({ id, page, query }: Props) {
           </article>
         )}
         {(preview?.kind === "text" || preview?.kind === "code") && (
-          <pre className={`doc-text ${preview.kind}`}>
+          <pre className={`viewer-text ${preview.kind}`}>
             <Highlight text={preview.content} terms={terms} />
           </pre>
         )}

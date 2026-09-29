@@ -104,6 +104,8 @@ async def search(q: str = Query(..., min_length=1, max_length=500), limit: int =
 
 # ---- Preview ---------------------------------------------------------------
 
+# Word's Title/Subtitle styles aren't mapped by mammoth by default.
+DOCX_STYLE_MAP = "p[style-name='Title'] => h1:fresh\np[style-name='Subtitle'] => h2:fresh"
 MAX_PREVIEW_BYTES = 5 * 1024 * 1024
 MAX_TABLE_ROWS = 2000
 CODE_LANGUAGES = {
@@ -142,7 +144,7 @@ def _build_preview(doc_id: UUID, filename: str) -> dict:
         import mammoth
 
         with path.open("rb") as f:
-            result = mammoth.convert_to_html(f)
+            result = mammoth.convert_to_html(f, style_map=DOCX_STYLE_MAP)
         return {"kind": "html", "content": result.value}
 
     text = _decode(path.read_bytes())
