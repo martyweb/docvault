@@ -1,0 +1,10 @@
+.env
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+.deploy-hash
+.deploy.log
+.claude/settings.local.json
+.deploy.lock

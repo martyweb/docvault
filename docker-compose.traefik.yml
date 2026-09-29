@@ -1,0 +1,19 @@
+# Serve DocVault through an existing Traefik instance (added by scripts/deploy.sh when DOCVAULT_HOST is set).
+services:
+  frontend:
+    ports: !reset []
+    networks:
+      - default
+      - traefik
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: ${TRAEFIK_NETWORK:-traefik}
+      traefik.http.routers.docvault.rule: Host(`${DOCVAULT_HOST:?set DOCVAULT_HOST in .env}`)
+      traefik.http.routers.docvault.tls: "true"
+      traefik.http.routers.docvault.tls.certresolver: ${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      traefik.http.services.docvault.loadbalancer.server.port: "80"
+
+networks:
+  traefik:
+    name: ${TRAEFIK_NETWORK:-traefik}
+    external: true

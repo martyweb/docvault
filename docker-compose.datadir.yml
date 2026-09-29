@@ -1,0 +1,11 @@
+# Keep data in host directories instead of Docker volumes, so it survives volume cleanup and is easy to back up.
+# Added by scripts/deploy.sh when DATA_DIR is set.
+services:
+  postgres:
+    volumes:
+      - ${DATA_DIR:?set DATA_DIR in .env}/db:/var/lib/postgresql/data
+
+  backend:
+    volumes:
+      - ${DATA_DIR}/uploads:/data/uploads
+      - ${DATA_DIR}/models:/models

@@ -1,0 +1,6 @@
+# Attach Traefik middlewares (e.g. an IP allowlist or auth) to the DocVault router.
+# Added by scripts/deploy.sh when TRAEFIK_MIDDLEWARES is set.
+services:
+  frontend:
+    labels:
+      traefik.http.routers.docvault.middlewares: ${TRAEFIK_MIDDLEWARES:?set TRAEFIK_MIDDLEWARES in .env}
